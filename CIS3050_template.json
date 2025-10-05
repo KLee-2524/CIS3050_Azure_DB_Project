@@ -94,7 +94,7 @@
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "2024-01-01",
             "name": "[parameters('networkSecurityGroups_CIS3050_VM2_nsg_name')]",
-            "location": "westus",
+            "location": "SELECTED_REGION",
             "properties": {
                 "securityRules": [
                     {
@@ -123,7 +123,7 @@
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "2024-01-01",
             "name": "[parameters('networkSecurityGroups_CIS3050_VM_nsg_name')]",
-            "location": "westus",
+            "location": "SELECTED_REGION",
             "properties": {
                 "securityRules": [
                     {
@@ -152,19 +152,19 @@
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2024-01-01",
             "name": "[parameters('publicIPAddresses_CIS3050_VM2_ip_name')]",
-            "location": "westus",
+            "location": "SELECTED_REGION",
             "sku": {
                 "name": "Standard",
                 "tier": "Regional"
             },
             "properties": {
-                "ipAddress": "104.42.134.196",
+                "ipAddress": "PUBLIC_IP_ADDRESS",
                 "publicIPAddressVersion": "IPv4",
                 "publicIPAllocationMethod": "Static",
                 "idleTimeoutInMinutes": 4,
                 "dnsSettings": {
                     "domainNameLabel": "db-access-2",
-                    "fqdn": "db-access-2.westus.cloudapp.azure.com"
+                    "fqdn": "db-access-2.SELECTED_REGION.cloudapp.azure.com"
                 },
                 "ipTags": [],
                 "ddosSettings": {
@@ -176,19 +176,19 @@
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2024-01-01",
             "name": "[parameters('publicIPAddresses_CIS3050_VM_ip_name')]",
-            "location": "westus",
+            "location": "SELECTED_REGION",
             "sku": {
                 "name": "Standard",
                 "tier": "Regional"
             },
             "properties": {
-                "ipAddress": "13.93.222.59",
+                "ipAddress": "PUBLIC_IP_ADDRESS",
                 "publicIPAddressVersion": "IPv4",
                 "publicIPAllocationMethod": "Static",
                 "idleTimeoutInMinutes": 4,
                 "dnsSettings": {
                     "domainNameLabel": "db-access-1",
-                    "fqdn": "db-access-1.westus.cloudapp.azure.com"
+                    "fqdn": "db-access-1.SELECTED_REGION.cloudapp.azure.com"
                 },
                 "ipTags": [],
                 "ddosSettings": {
@@ -200,7 +200,7 @@
             "type": "Microsoft.Network/virtualNetworks",
             "apiVersion": "2024-01-01",
             "name": "[parameters('virtualNetworks_CIS3050_VM_vnet_name')]",
-            "location": "westus",
+            "location": "SELECTED_REGION",
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
@@ -228,7 +228,7 @@
             "type": "Microsoft.Sql/servers",
             "apiVersion": "2023-08-01-preview",
             "name": "[parameters('servers_cis3050_sql_server_name')]",
-            "location": "westus",
+            "location": "SELECTED_REGION",
             "kind": "v12.0",
             "properties": {
                 "administratorLogin": "[parameters('sqlAdministratorLogin')]",
@@ -243,7 +243,7 @@
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2024-07-01",
             "name": "[parameters('virtualMachines_CIS3050_VM_name')]",
-            "location": "westus",
+            "location": "SELECTED_REGION",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_cis3050_vm551_name'))]"
             ],
@@ -317,7 +317,7 @@
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2024-07-01",
             "name": "[parameters('virtualMachines_CIS3050_VM2_name')]",
-            "location": "westus",
+            "location": "SELECTED_REGION",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_cis3050_vm2905_name'))]"
             ],
@@ -544,7 +544,7 @@
             "type": "Microsoft.Sql/servers/connectionPolicies",
             "apiVersion": "2023-08-01-preview",
             "name": "[concat(parameters('servers_cis3050_sql_server_name'), '/default')]",
-            "location": "westus",
+            "location": "SELECTED_REGION",
             "dependsOn": [
                 "[resourceId('Microsoft.Sql/servers', parameters('servers_cis3050_sql_server_name'))]"
             ],
@@ -556,7 +556,7 @@
             "type": "Microsoft.Sql/servers/databases",
             "apiVersion": "2023-08-01-preview",
             "name": "[concat(parameters('servers_cis3050_sql_server_name'), '/CIS3050-DB')]",
-            "location": "westus",
+            "location": "SELECTED_REGION",
             "dependsOn": [
                 "[resourceId('Microsoft.Sql/servers', parameters('servers_cis3050_sql_server_name'))]"
             ],
@@ -746,8 +746,8 @@
                 "[resourceId('Microsoft.Sql/servers', parameters('servers_cis3050_sql_server_name'))]"
             ],
             "properties": {
-                "startIpAddress": "13.93.222.59",
-                "endIpAddress": "13.93.222.59"
+                "startIpAddress": "PUBLIC_IP_ADDRESS",
+                "endIpAddress": "PUBLIC_IP_ADDRESS"
             }
         },
         {
@@ -758,8 +758,8 @@
                 "[resourceId('Microsoft.Sql/servers', parameters('servers_cis3050_sql_server_name'))]"
             ],
             "properties": {
-                "startIpAddress": "104.42.134.196",
-                "endIpAddress": "104.42.134.196"
+                "startIpAddress": "PUBLIC_IP_ADDRESS",
+                "endIpAddress": "PUBLIC_IP_ADDRESS"
             }
         },
         {
@@ -1035,7 +1035,7 @@
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2024-01-01",
             "name": "[parameters('networkInterfaces_cis3050_vm2905_name')]",
-            "location": "westus",
+            "location": "SELECTED_REGION",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_CIS3050_VM2_ip_name'))]",
                 "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_CIS3050_VM_vnet_name'), 'default')]",
@@ -1082,7 +1082,7 @@
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2024-01-01",
             "name": "[parameters('networkInterfaces_cis3050_vm551_name')]",
-            "location": "westus",
+            "location": "SELECTED_REGION",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_CIS3050_VM_ip_name'))]",
                 "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_CIS3050_VM_vnet_name'), 'default')]",
